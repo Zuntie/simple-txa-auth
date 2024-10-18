@@ -36,7 +36,7 @@ router.get('/callback', async (req, res) => {
     const sessionState = req.session.state;
 
     if (!sessionState) {
-        return res.status(400).send('Session state not found. Possible CSRF attack.');
+        return res.status(400).send('Session state not found. Please try again.');
     }
 
     // Debugging
