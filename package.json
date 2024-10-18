@@ -1,0 +1,17 @@
+{
+  "name": "cfxauth",
+  "author": "Zuntie",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "nodemon": "^3.1.7",
+    "openid-client": "^5.7.0"
+  }
+}
