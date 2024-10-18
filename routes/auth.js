@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { randomUUID } = require('crypto');
 const { getClient, getAuthState, getUserInfo } = require('../utils/oidc-client');
-
+const authURL = "https://simple-txa-auth.onrender.com/callback" // Your redirect URL. example: http://localhost:3000/callback
 
 // Login route
 router.get('/login', async (req, res) => {
@@ -16,7 +16,7 @@ router.get('/login', async (req, res) => {
 
     // Generates the authorization URL
     const url = client.authorizationUrl({
-        redirect_uri: 'http://localhost:3000/callback',
+        redirect_uri: authURL, // Your redirect URL. example: http://localhost:3000/callback
         state: state,
         response_type: 'code',
         scope: 'openid identify',
@@ -45,7 +45,7 @@ router.get('/callback', async (req, res) => {
 
     // Handle the callback
     try {
-        const tokenSet = await client.callback('http://localhost:3000/callback', params, { state: sessionState });
+        const tokenSet = await client.callback(authURL, params, { state: sessionState });
         console.log('TokenSet:', tokenSet);
 
         const userInfo = await getUserInfo(client, tokenSet);
